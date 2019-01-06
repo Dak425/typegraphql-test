@@ -1,0 +1,26 @@
+{
+  "name": "typegraphql-test",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "Donald Feury <dfeury@protonmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "argon2": "^0.20.0",
+    "graphql": "^14.0.2",
+    "pg": "^7.7.1",
+    "reflect-metadata": "^0.1.12",
+    "type-graphql": "^0.16.0",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.11",
+    "typeorm-typedi-extensions": "^0.2.1"
+  },
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  }
+}

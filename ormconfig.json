@@ -1,0 +1,35 @@
+[
+    {
+        "name": "development",
+        "type": "postgres",
+        "host": "192.168.0.100",
+        "port": 5432,
+        "username": "postgres",
+        "password": "postgres",
+        "database": "store-dev",
+        "synchronize": true,
+        "logging": true,
+        "entities": ["src/connectors/typeorm/entity/**/*.*"],
+        "migrations": ["src/connectors/typeorm/migration/**/*.*"],
+        "subscribers": ["src/connectors/typeorm/subscriber/**/*.*"],
+        "cli": {
+            "entitiesDir": "src/connectors/typeorm/entity",
+            "migrationsDir": "src/connectors/typeorm/migration",
+            "subscribersDir": "src/connectors/typeorm/subscriber"
+        }
+    },
+    {
+        "name": "production",
+        "type": "postgres",
+        "host": "db",
+        "port": 5432,
+        "username": "postgres",
+        "password": "postgres",
+        "database": "store",
+        "synchronize": false,
+        "logging": false,
+        "entities": ["dist/entity/**/*.*"],
+        "migrations": ["dist/migration/**/*.*"],
+        "subscribers": ["dist/subscriber/**/*.*"]
+    }
+]
