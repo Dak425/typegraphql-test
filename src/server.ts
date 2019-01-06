@@ -11,12 +11,12 @@ export async function startServer() {
   useContainer(Container);
 
   const schema = await buildSchema({
-    resolvers: [...TypeORMResolvers]
+    resolvers: [...TypeORMResolvers],
   });
 
   const server = new ApolloServer({
     schema,
-    playground: true
+    playground: true,
   });
 
   const { url } = await server.listen(4000);

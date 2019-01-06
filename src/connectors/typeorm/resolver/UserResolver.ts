@@ -8,31 +8,27 @@ import { PaginationArgs } from '../common/PaginationArgs';
 
 @Resolver(User)
 export class UserResolver {
-  constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>
-  ) { }
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
 
   @Query(_returns => User)
-  userInfo(@Arg("uid") uid: string): Promise<User> {
+  userInfo(@Arg('uid') uid: string): Promise<User> {
     return this.userRepository.findOneOrFail(uid);
   }
 
   @Query(_returns => [User])
-  users(
-    @Args() { skip, take }: PaginationArgs
-  ): Promise<User[]> {
+  users(@Args() { skip, take }: PaginationArgs): Promise<User[]> {
     return this.userRepository.find({
       skip,
-      take
+      take,
     });
   }
 
   @Mutation(_returns => User)
-  async addUser(@Arg("user") user: UserInput): Promise<User> {
+  async addUser(@Arg('user') user: UserInput): Promise<User> {
     const pwHash = await hash(user.password);
     return this.userRepository.save({
       ...user,
-      password: pwHash
+      password: pwHash,
     });
   }
 }
