@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
-import { ObjectType, Field, ID, InputType } from 'type-graphql';
+import { ObjectType, Field, ID, InputType, ArgsType } from 'type-graphql';
+import { PaginationArgs } from '../common/PaginationArgs';
 
 @Entity()
 @ObjectType()
@@ -39,4 +40,10 @@ export class UserInput implements Partial<User> {
 
   @Field()
   password: string;
+}
+
+@ArgsType()
+export class UsersArgs extends PaginationArgs implements Partial<User> {
+  @Field()
+  active: boolean = true;
 }

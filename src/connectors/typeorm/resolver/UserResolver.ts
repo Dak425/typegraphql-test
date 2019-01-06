@@ -1,9 +1,10 @@
-import { Resolver, Query, Mutation, Arg } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg, Args } from 'type-graphql';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
 import { hash } from 'argon2';
 
 import { User, UserInput } from '../entity/User';
+import { PaginationArgs } from '../common/PaginationArgs';
 
 @Resolver(User)
 export class UserResolver {
@@ -11,9 +12,19 @@ export class UserResolver {
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) { }
 
+  @Query(_returns => User)
+  userInfo(@Arg("uid") uid: string): Promise<User> {
+    return this.userRepository.findOneOrFail(uid);
+  }
+
   @Query(_returns => [User])
-  users(): Promise<User[]> {
-    return this.userRepository.find();
+  users(
+    @Args() { skip, take }: PaginationArgs
+  ): Promise<User[]> {
+    return this.userRepository.find({
+      skip,
+      take
+    });
   }
 
   @Mutation(_returns => User)
