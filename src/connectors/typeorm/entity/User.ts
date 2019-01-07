@@ -9,7 +9,7 @@ export class User {
   @Field(_type => ID)
   readonly uid: string;
 
-  @Column()
+  @Column({ unique: true })
   @Field()
   email: string;
 

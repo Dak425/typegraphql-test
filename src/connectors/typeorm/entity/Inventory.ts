@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { ObjectType, Field, ID, InputType, Int } from 'type-graphql';
+import { Image } from './Image';
 
 @Entity()
 @ObjectType()
@@ -20,9 +21,10 @@ export class Inventory {
   @Field(_type => Int)
   stock: number;
 
-  @Column({ type: 'simple-array', nullable: true })
-  @Field(_type => [String], { nullable: true })
-  images: string[];
+  @ManyToMany(_type => Image)
+  @JoinTable()
+  @Field(_type => [Image], { nullable: true })
+  images: Image[];
 }
 
 @InputType()
@@ -36,6 +38,6 @@ export class InventoryInput implements Partial<Inventory> {
   @Field(_type => Int, { nullable: true })
   stock?: number;
 
-  @Field(_type => [String], { nullable: true })
-  images?: string[];
+  @Field(_type => [Image], { nullable: true })
+  images: Image[];
 }

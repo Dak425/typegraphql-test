@@ -30,7 +30,7 @@ export class InventoryResolver {
   }
 
   @Mutation(_returns => Inventory, { nullable: true })
-  async deleteInventory(@Arg('uid') uid: string): Promise<Inventory|null> {
+  async deleteInventory(@Arg('uid') uid: string): Promise<Inventory | null> {
     try {
       const inventory = await this.inventoryRepository.findOneOrFail(uid);
       return this.inventoryRepository.remove(inventory);
