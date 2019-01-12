@@ -10,7 +10,7 @@ export class ViewerResolver {
 
   @Query(_returns => User, { nullable: true })
   async viewer(@Ctx() ctx: Context): Promise<User | null> {
-    const session = ctx.request.session;
+    const session = ctx.req.session;
     if (session && session.userId) {
       try {
         return this.userRepository.findOneOrFail(session.userId);

@@ -7,7 +7,6 @@ import cors from 'cors';
 import session from 'express-session';
 import { setupTypeORM } from './connectors/typeorm';
 import { resolvers as TypeORMResolvers } from './connectors/typeorm/resolver';
-import { Server } from 'https';
 
 export async function bootstrap() {
   await setupTypeORM();
@@ -49,7 +48,7 @@ export async function bootstrap() {
 
   server.applyMiddleware({ app });
 
-  app.listen(4000, (serv: Server) => {
+  app.listen(4000, () => {
     console.log(`API server started, GraphQL Playground available at /graphql`);
   });
 }
