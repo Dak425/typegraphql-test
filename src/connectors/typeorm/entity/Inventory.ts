@@ -38,6 +38,6 @@ export class InventoryInput implements Partial<Inventory> {
   @Field(_type => Int, { nullable: true })
   stock?: number;
 
-  @Field(_type => [Image], { nullable: true })
-  images: Image[];
+  // @Field(_type => [Image], { nullable: true })
+  // images: Image[];
 }
