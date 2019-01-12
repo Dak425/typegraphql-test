@@ -24,10 +24,6 @@ export class User {
   @Field()
   date_joined: Date;
 
-  // @Column('timestamp')
-  // @Field()
-  // lastLogin: Date;
-
   @Column({ nullable: true })
   @Field({ nullable: true })
   customer_id?: string;
