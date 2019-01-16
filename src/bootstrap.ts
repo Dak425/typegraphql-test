@@ -43,7 +43,7 @@ export async function bootstrap() {
   const server = new ApolloServer({
     schema,
     playground: true,
-    context: ({ req }: any) => ({ req }),
+    context: ({ req, res }: any) => ({ req, res }),
   });
 
   server.applyMiddleware({ app });
