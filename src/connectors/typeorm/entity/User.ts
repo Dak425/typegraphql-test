@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
 import { ObjectType, Field, ID, InputType, ArgsType } from 'type-graphql';
+import { IsEmail } from 'class-validator';
 import { PaginationArgs } from '../common/PaginationArgs';
 
 @Entity()
@@ -32,6 +33,7 @@ export class User {
 @InputType()
 export class UserInput implements Partial<User> {
   @Field()
+  @IsEmail()
   email: string;
 
   @Field()

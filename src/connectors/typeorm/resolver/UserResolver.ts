@@ -1,9 +1,8 @@
-import { Resolver, Query, Mutation, Arg, Args } from 'type-graphql';
+import { Resolver, Query, Arg, Args } from 'type-graphql';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
-import { hash } from 'argon2';
 
-import { User, UserInput } from '../entity/User';
+import { User } from '../entity/User';
 import { PaginationArgs } from '../common/PaginationArgs';
 
 @Resolver(User)
@@ -20,15 +19,6 @@ export class UserResolver {
     return this.userRepository.find({
       skip,
       take,
-    });
-  }
-
-  @Mutation(_returns => User)
-  async addUser(@Arg('user') user: UserInput): Promise<User> {
-    const pwHash = await hash(user.password);
-    return this.userRepository.save({
-      ...user,
-      password: pwHash,
     });
   }
 }
